@@ -690,7 +690,7 @@ BootSourceOverrideTarget must be specified before BootSourceOverrideEnabled can 
 
 * `Once`
 
-* `Continuous`
+* `Continuous`:  this value is supported only on Gen9 and later servers
 
 ### Boot.BootSourceOverrideTarget
 
@@ -3159,6 +3159,9 @@ Unachievable cap for the power meter.
 Number of samples in the array.
 
 ## HpBaseConfigs
+
+HpBaseConfigs provide information about default settings.  This is available on Gen9 and later servers only.
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -3186,6 +3189,8 @@ True if the provider supports PUT/PATCH of the named BaseConfigs.
 BIOS configuration settings vary with the server model and firmware version. The per-server settings are described with HpBios Attributes.  A GET of the BIOS settings will include a combination of properties from "HpBios" and "HpBios Attributes".
 
 The BIOS settings are in two resources.  One is the current settings and are read only.  The second is the pending settings are are modifiable with PUT or PATCH.  The pending settings are evaluated and applied upon system restart when UEFI POST runs.  At this time the current settings are updated to reflect the changed configuration.  The results of the last settings application are in the `SettingsResults` sub-object of the current settings.
+
+Full UEFI BIOS Configuration is available on Gen9 and later servers only.
 
 ### Resetting BIOS Setting to Default
 
@@ -6584,6 +6589,9 @@ This indicates the known state of the resource, such as if it is enabled.
 The total width, in bits, of this memory device, including any check or error-correction bits. If there are no error-correction bits, this value should be equal to Data Width. If the width is unknown, the field is set to null.
 
 ## HpSecureBoot
+
+SecureBoot is available on Gen9 and later servers.
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -6631,7 +6639,7 @@ TODO - what's up with this?
 > * `https://{iLO}/redfish/v1/managers/{item}/securityservice`
 
 ## HpServerBootSettings
-The schema definition of the server UEFI Boot Order resource.
+The schema definition of the server UEFI Boot Order resource.  It is available on Gen9 and later servers only.
 
 **Properties**
 
@@ -6849,11 +6857,11 @@ PCI technology
 
 **JSONPath**: `/UEFIDevicePath` (read only string)
 
-Standardized text representation of the UEFI device path, in UTF-8 format
+Standardized text representation of the UEFI device path, in UTF-8 format.  This is available only on Gen9 and later servers.
 
 ## HpServerPciDevice
 
-This describes a logical PCI Device on a server.  This does not necessarily correspond to a specific FRU because a FRU or card might contain mutiple logical PCI devices.
+This describes a logical PCI Device on a server.  This does not necessarily correspond to a specific FRU because a FRU or card might contain mutiple logical PCI devices.  This full set of information is available on Gen9 and later servers only.  Gen8 servers have a reduced report.
 
 **Properties**
 
@@ -8861,7 +8869,11 @@ High, Med, or Low based on the percentage of power usage.
 
 ## HpiLOFederationGroup
 
-This manages iLO's participation in Federation groups.
+This manages iLO's participation in Federation groups.  To join a new or existing Federation group, POST the group details to the Federation Groups collection.  The group name, key and at least one privilege must be included in the POST body.
+
+> example POST `https://{iLO}/redfish/v1/managers/{item}/federationgroups/`
+> {"Name": "group name", "Key": "group passphrase", "Privileges": {"LoginPriv": true}}
+
 
 **Properties**
 
@@ -9388,7 +9400,7 @@ OData-Version: 4.0
 ```
 
 ## HpiSCSISoftwareInitiator
-The schema definition of UEFI iSCSI Software Initiator boot configuration.
+The schema definition of UEFI iSCSI Software Initiator boot configuration.  This is available on Gen9 and later servers only.
 
 **Properties**
 
