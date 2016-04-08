@@ -8898,9 +8898,6 @@ Power Capping is available as a licensed feature and may require installing a li
 
 The configured power cap for all servers in a group. This value is 0 if the power cap is not configured.
 
-<aside class="notice">
-Power Capping is available as a licensed feature and may require installing a license such as the iLO Advanced license. (TODO - fact check the license requirments)
-</aside>
 
 ### CapacityWatts
 
