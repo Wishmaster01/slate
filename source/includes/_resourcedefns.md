@@ -9391,7 +9391,11 @@ Parameters:
 * DirectImportCert
 * ImportCertUri
 
-"**CertInput**" If CertType is 'ImportCertUri' this is the URI of the certificate (typically https://{systems-insight-manager-address:port}/GetCertificate?certtype=sso).  If CertType is 'DirectImportCert' this is the X.509 PEM certificate string with '\n' used for required line breaks.
+"**CertInput**" 
+
+If CertType is 'ImportCertUri' this is the URI of the certificate (typically https://{systems-insight-manager-address:port}/GetCertificate?certtype=sso).  
+
+If CertType is 'DirectImportCert' this is the X.509 PEM certificate string with '\n' used for required line breaks.
 
 > example "ImportCertificate" action:
 
