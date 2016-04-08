@@ -690,7 +690,11 @@ BootSourceOverrideTarget must be specified before BootSourceOverrideEnabled can 
 
 * `Once`
 
-* `Continuous`:  this value is supported only on Gen9 and later servers
+* `Continuous`:  this value is supported only on Gen9 and later servers.
+
+<aside class="notice">
+The 'Continuous` setting is not available on Gen9 and later servers and is not available on Gen8 servers.
+</aside>
 
 ### Boot.BootSourceOverrideTarget
 
@@ -3160,7 +3164,11 @@ Number of samples in the array.
 
 ## HpBaseConfigs
 
-HpBaseConfigs provide information about default settings.  This is available on Gen9 and later servers only.
+HpBaseConfigs provide information about default settings.
+
+<aside class="notice">
+HpBaseConfigs is available on Gen9 and later servers and is not supported on Gen8 servers.
+</aside>
 
 **Properties**
 
@@ -3190,7 +3198,9 @@ BIOS configuration settings vary with the server model and firmware version. The
 
 The BIOS settings are in two resources.  One is the current settings and are read only.  The second is the pending settings are are modifiable with PUT or PATCH.  The pending settings are evaluated and applied upon system restart when UEFI POST runs.  At this time the current settings are updated to reflect the changed configuration.  The results of the last settings application are in the `SettingsResults` sub-object of the current settings.
 
-Full UEFI BIOS Configuration is available on Gen9 and later servers only.
+<aside class="notice">
+Full UEFI BIOS Configuration is available on Gen9 and later servers only.  Gen8 servers provide a limited set of configurable settings.
+</aside>
 
 ### Resetting BIOS Setting to Default
 
@@ -6590,7 +6600,11 @@ The total width, in bits, of this memory device, including any check or error-co
 
 ## HpSecureBoot
 
-SecureBoot is available on Gen9 and later servers.
+This enables you to configure Secure Boot settings.
+
+<aside class="notice">
+Secure Boot is available on Gen9 and later servers and is not supported on Gen8 servers.
+</aside>
 
 **Properties**
 
@@ -6639,7 +6653,11 @@ TODO - what's up with this?
 > * `https://{iLO}/redfish/v1/managers/{item}/securityservice`
 
 ## HpServerBootSettings
-The schema definition of the server UEFI Boot Order resource.  It is available on Gen9 and later servers only.
+The schema definition of the server UEFI Boot Order resource.
+
+<aside class="notice">
+HpServerBootSettings is available on Gen9 and later servers and is not supported on Gen8 servers.
+</aside>
 
 **Properties**
 
@@ -6857,7 +6875,7 @@ PCI technology
 
 **JSONPath**: `/UEFIDevicePath` (read only string)
 
-Standardized text representation of the UEFI device path, in UTF-8 format.  This is available only on Gen9 and later servers.
+Standardized text representation of the UEFI device path, in UTF-8 format.  This is available only on Gen9 and later servers and is not supported on Gen8 servers.
 
 ## HpServerPciDevice
 
@@ -8871,9 +8889,21 @@ High, Med, or Low based on the percentage of power usage.
 
 This manages iLO's participation in Federation groups.  To join a new or existing Federation group, POST the group details to the Federation Groups collection.  The group name, key and at least one privilege must be included in the POST body.
 
-> example POST `https://{iLO}/redfish/v1/managers/{item}/federationgroups/`
-> {"Name": "group name", "Key": "group passphrase", "Privileges": {"LoginPriv": true}}
+> example of joining a Federation group:
 
+```
+POST https://{iLO}/redfish/v1/managers/{item}/federationgroups/
+Content-Type: application/json
+OData-Version: 4.0
+
+{
+	"Name": "group name",in
+	"Key": "group passphrase",
+	"Privileges": {
+		"LoginPriv": true
+	}
+}
+```
 
 **Properties**
 
@@ -9400,7 +9430,12 @@ OData-Version: 4.0
 ```
 
 ## HpiSCSISoftwareInitiator
-The schema definition of UEFI iSCSI Software Initiator boot configuration.  This is available on Gen9 and later servers only.
+The schema definition of UEFI iSCSI Software Initiator boot configuration.
+
+<aside class="notice">
+HpiSCSISoftwareInitiator is available on Gen9 and later servers and is not supported on Gen8 servers.
+</aside>
+
 
 **Properties**
 
