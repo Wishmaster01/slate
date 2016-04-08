@@ -6879,7 +6879,11 @@ Standardized text representation of the UEFI device path, in UTF-8 format.  This
 
 ## HpServerPciDevice
 
-This describes a logical PCI Device on a server.  This does not necessarily correspond to a specific FRU because a FRU or card might contain mutiple logical PCI devices.  This full set of information is available on Gen9 and later servers only.  Gen8 servers have a reduced report.
+This describes a logical PCI Device on a server.  This does not necessarily correspond to a specific FRU because a FRU or card might contain mutiple logical PCI devices.
+
+<aside class="notice">
+The full set of PCI device information is available on Gen9 and later servers only.  Gen8 servers have a reduced report.
+</aside>
 
 **Properties**
 
@@ -8889,7 +8893,12 @@ High, Med, or Low based on the percentage of power usage.
 
 This manages iLO's participation in Federation groups.  To join a new or existing Federation group, POST the group details to the Federation Groups collection.  The group name, key and at least one privilege must be included in the POST body.
 
+> **Resource Instances of this Type**:  
+
+> * `https://{iLO}/redfish/v1/managers/{item}/federationgroups/{group}`
+
 > example of joining a Federation group:
+
 
 ```
 POST https://{iLO}/redfish/v1/managers/{item}/federationgroups/
