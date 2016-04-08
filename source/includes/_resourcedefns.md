@@ -341,6 +341,10 @@ Some properties in Chassis are only represented on blade servers:
 
 * `Oem/Hp/Location/LocationInRack/UPosition`
 
+<aside class="notice">
+Location information is available as a licensed feature and may require installing a license such as the iLO Advanced license. (TODO - fact check the license requirments)
+</aside>
+
 ### AssetTag
 
 **JSONPath**: `/AssetTag` (PATCHable string)
@@ -2915,7 +2919,7 @@ Parameters:
 * ResourceRemoved
 * Alert
 
-"**EventID**" (string) - TODO - what makes sense here?
+"**EventID**" (string) - This is the ID of event to be added.
 
 "**EventTimestamp**" (date-time)
 
@@ -2931,7 +2935,7 @@ Parameters:
 
 "**MessageArgs**" (array of strings used to substitute into the MessageID tokens)
 
-"**OriginOfCondition**" (the uri of the resource associated with this event) - TODO - what makes sense here?
+"**OriginOfCondition**" (the uri of the resource associated with this event)
 
 > example "SubmitTestEvent" action:
 
@@ -3036,6 +3040,11 @@ A version number used for greater-than, less-than, equality comparison.
 The user-displayable version of the firmware item in string format
 
 ## HPPowerMeter
+
+<aside class="notice">
+Power Meter is available as a licensed feature and may require installing a license such as the iLO Advanced license.. (TODO - fact check the license requirments)
+</aside>
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -3079,6 +3088,10 @@ Average power over the sample time.
 **JSONPath**: `/PowerDetail/(array index)/Cap` (read only integer)
 
 Overall power cap for the power meter.
+
+<aside class="notice">
+Power Capping is available as a licensed feature and may require installing a license such as the iLO Advanced license.. (TODO - fact check the license requirments)
+</aside>
 
 ### PowerDetail[array-item].CpuAvgFreq
 
@@ -6075,6 +6088,10 @@ The sub-instance number of the child PCI device for this association set.
 ## HpESKM
 ESKM (Enterprise Security Key Manager) object enables user to connect to an operational key manager, change redundancy settings, view the key manager connection settings, test the connection, and view key management events.
 
+<aside class="notice">
+Enterprise Security Key Manager support is available as a licensed feature and may require installing a license such as the iLO Advanced license. (TODO - fact check the license requirments)
+</aside>
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -6185,7 +6202,7 @@ Secondary key server port number. Set to null to clear the value.
 
 ### POST Action "TestESKMConnections"
 
-Test Enterprise Storage Key Manager connections.  TODO - need to describe this better -what's the outcome?
+Test Enterprise Storage Key Manager connections.
 
 > example "TestESKMConnections" action:
 
@@ -6297,7 +6314,7 @@ Imports a Trusted Certificate and iLO 4 is reset.
 
 Parameters:
 
-"**Certificate**" (The certificate as a base-64 string) - TODO correct?
+"**Certificate**" (string) X.509 formatted certificate
 
 > example "ImportCertificate" action:
 
@@ -6307,7 +6324,7 @@ Content-Type: application/json
 OData-Version: 4.0
 
 {
-    "Certificate": "<base-64 string>"
+    "Certificate": "<X.509 string>"
 }
 ```
 
@@ -8865,6 +8882,10 @@ The number of writes on the SD card. Rendered only if this is an HP-certified SD
 
 This resource manages the system's participating in iLO Federation group power capping.
 
+<aside class="notice">
+Power Capping is available as a licensed feature and may require installing a license such as the iLO Advanced license. (TODO - fact check the license requirments)
+</aside>
+
 **Properties**
 
 > **Resource Instances of this Type**:  
@@ -8876,6 +8897,10 @@ This resource manages the system's participating in iLO Federation group power c
 **JSONPath**: `/CapWatts` (read only integer)
 
 The configured power cap for all servers in a group. This value is 0 if the power cap is not configured.
+
+<aside class="notice">
+Power Capping is available as a licensed feature and may require installing a license such as the iLO Advanced license. (TODO - fact check the license requirments)
+</aside>
 
 ### CapacityWatts
 
@@ -9054,7 +9079,7 @@ Parameters:
 
 "**FirmwareURI**" (uri) the URI of the firmware image
 
-"**TPMOverrideFlag**" (boolean) with one of the following value(s): - TODO (is this really a boolean?
+"**TPMOverrideFlag**" (boolean) with one of the following value(s):
 
 * true
 * false
@@ -9369,7 +9394,7 @@ Parameters:
 * DirectImportCert
 * ImportCertUri
 
-"**CertInput**" (The certificate as a base-64 string) - TODO correct?
+"**CertInput**" If CertType is 'ImportCertUri' this is the network address of the certificate (TODO - is this a URI or the hostname/ip only?).  If CertType is 'DirectImportCert' this is the X.509 PEM certificate string (TODO - are the newline breaks imcluded/important?).
 
 > example "ImportCertificate" action:
 
@@ -9424,7 +9449,7 @@ Delete Single Sign On record by record number.
 
 Parameters:
 
-"**RecordNumber**" (integer) - TODO - is this really an integer?
+"**RecordNumber**" (integer)
 
 > example "DeleteSSORecordbyNumber" action:
 
@@ -10339,6 +10364,10 @@ Status of serial command line interface.
 
 This property enables or disables download of Virtual Serial Port (VSP) log.
 
+<aside class="notice">
+Virtual Serial Port logging is available as a licensed feature and may require installing a license such as the iLO Advanced license. (TODO - fact check the license requirments)
+</aside>
+
 > example PATCH: {"Oem": {"Hp": {"VSPLogDownloadEnabled": true}}}
 
 ### iLOFunctionalityRequired
@@ -11089,6 +11118,10 @@ The SNMP trap port number.
 
 Indicates whether Serial Over LAN (SOL) or Virtual Serial Port (VSP) logging is enabled.
 
+<aside class="notice">
+Serial-Over-Lan Logging is available as a licensed feature and may require installing a license such as the iLO Advanced license. (TODO - fact check the license requirments)
+</aside>
+
 > example PATCH: {"Oem": {"Hp": {"SerialOverLanLogging": true}}}
 
 ### XMLResponseEnabled
@@ -11303,6 +11336,10 @@ Indicates whether Virtual Media is enabled for the manager.
 
 ### POST Action "SendTestSyslog"
 
+<aside class="notice">
+This action is available as a licensed feature and may require installing a license such as the iLO Advanced license. (TODO - fact check the license requirments)
+</aside>
+
 > example "SendTestSyslog" action:
 
 ```
@@ -11316,6 +11353,10 @@ OData-Version: 4.0
 ### POST Action "SendTestAlertMail"
 
 Sends test alert mail to configured AlertMail email address.
+
+<aside class="notice">
+This action is available as a licensed feature and may require installing a license such as the iLO Advanced license. (TODO - fact check the license requirments)
+</aside>
 
 > example "SendTestAlertMail" action:
 
@@ -11451,6 +11492,10 @@ The action that is taken if the power cannot be maintained below the LimitInWatt
 **JSONPath**: `/PowerControl/(array index)/PowerLimit/LimitInWatts` (PATCHable integer)
 
 The Power limit in watts. Set to null to disable power capping.
+
+<aside class="notice">
+Power Capping is available as a licensed feature and may require installing a license such as the iLO Advanced license. (TODO - fact check the license requirments)
+</aside>
 
 > example PATCH: {"PowerControl": [{"PowerLimit": {"LimitInWatts": &lt;integer-value&gt;}}|null, ...]}
 
@@ -11591,6 +11636,10 @@ Action that is taken if the power cannot be maintained below the LimitInWatts.
 **JSONPath**: `/PowerLimit/LimitInWatts` (PATCHable integer)
 
 The Power (Watts) limit (also known as 'Power Cap'). Set to null to disable the power cap.
+
+<aside class="notice">
+Power Capping is available as a licensed feature and may require installing a license such as the iLO Advanced license. (TODO - fact check the license requirments)
+</aside>
 
 > example PATCH: {"PowerLimit": {"LimitInWatts": &lt;integer-value&gt;}}
 
