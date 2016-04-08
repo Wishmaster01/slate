@@ -9391,7 +9391,7 @@ Parameters:
 * DirectImportCert
 * ImportCertUri
 
-"**CertInput**" If CertType is 'ImportCertUri' this is the network address of the certificate (TODO - is this a URI or the hostname/ip only?).  If CertType is 'DirectImportCert' this is the X.509 PEM certificate string (TODO - are the newline breaks imcluded/important?).
+"**CertInput**" If CertType is 'ImportCertUri' this is the URI of the certificate (typically https://{systems-insight-manager-address:port}/GetCertificate?certtype=sso).  If CertType is 'DirectImportCert' this is the X.509 PEM certificate string with '\n' used for required line breaks.
 
 > example "ImportCertificate" action:
 
@@ -9402,7 +9402,18 @@ OData-Version: 4.0
 
 {
     "CertType": "DirectImportCert", 
-    "CertInput": "<base-64 string>"
+    "CertInput": "-----BEGIN CERTIFICATE-----\n certificate characters with \n breaks\n-----END CERTIFICATE-----"
+}
+
+or
+
+POST <target-uri>
+Content-Type: application/json
+OData-Version: 4.0
+
+{
+    "CertType": "ImportCertUri", 
+    "CertInput": "https://{systems-insight-manager-address:port}/GetCertificate?certtype=sso"
 }
 ```
 
